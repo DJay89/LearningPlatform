@@ -7,7 +7,8 @@ public class PDFHandler
 
     PDDocument doc;
     PDFTextStripper stripper;
-    String path;
+    string path;
+    int start, end;
 
     public PDFHandler()
     {
@@ -17,12 +18,28 @@ public class PDFHandler
 
     public PDDocument getDocument() { return doc; }
 
-    public void setDocument(string path) { doc = PDDocument.load("path"); }
+    public void setDocument(string path)
+    {
+        doc = PDDocument.load("path");
+        stripper.setStartPage(0);
+        stripper.setEndPage(doc.getNumberOfPages()-1);
+    }
 
-    public void setStartPage(int pageValue) { stripper.setStartPage(pageValue); }
+    public string[] getText()
+    {
+        string[] pages = new string[end - start];
+        int page = 0;
 
-    public void setEndPage(int pageValue) { stripper.setEndPage(pageValue); }
+        for (int i = start; i <= end; i++) {
+            stripper.setStartPage(i);
+            stripper.setEndPage(i + 1);
+            pages[page++] = stripper.getText(doc);
+        }
+        return pages;
+    }
 
-    public String getText() { return stripper.getText(doc); }
+    public void setStartPage(int pageValue) { start = pageValue; }
+
+    public void setEndPage(int pageValue) { end = pageValue; }
 
 }
