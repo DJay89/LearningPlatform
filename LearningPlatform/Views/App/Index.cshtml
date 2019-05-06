@@ -1,7 +1,26 @@
-﻿
+﻿@model FileUploadModel
+
 @{
     ViewData["Title"] = "Index";
 }
 
 <h2>Index</h2>
+<h3>
+    @Html.DisplayFor(modelItem => Model.File)
+</h3>
 
+@if (Model.Pages != null)
+{
+    @foreach (var item in Model.Pages)
+    {
+        @Html.DisplayFor(modelItem => item.Content)
+    }
+}
+<form asp-action="Index" enctype="multipart/form-data">
+
+    <input asp-for="File" />
+    <input asp-for="StartPage" />
+    <input asp-for="EndPage" />
+
+    <input type="submit" />
+</form>

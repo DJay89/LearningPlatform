@@ -1,4 +1,5 @@
-﻿using org.apache.pdfbox.pdmodel;
+﻿using LearningPlatform.Models;
+using org.apache.pdfbox.pdmodel;
 using org.apache.pdfbox.util;
 using System.Collections.Generic;
 
@@ -7,8 +8,7 @@ public class PDFHandler
 
     private PDDocument doc;
     private PDFTextStripper stripper;
-    private List<string> pages;
-    private string path;
+    private List<PageModel> pages;
 
     public PDFHandler()
     {
@@ -26,31 +26,34 @@ public class PDFHandler
 
     private void Extract()
     {
-        pages = new List<string>();
+        pages = new List<PageModel>();
 
         for (int i = 0; i < doc.getNumberOfPages(); i++) {
             stripper.setStartPage(i);
             stripper.setEndPage(i + 1);
-            pages.Add(stripper.getText(doc));
+
+            PageModel model  = new PageModel();
+            model.Content = stripper.getText(doc);
+            pages.Add(model);
         }
     }
 
-    public List<string> getPages()
+    public List<PageModel> getPages()
     {
         return pages;
     }
 
-    public List<string> getPagesBetween(int start, int forward)
+    public List<PageModel> getPagesBetween(int start, int forward)
     {
         return pages.GetRange(start-1, forward);
     }
 
-    public List<string> findPagesWithWord(string search)
+    public List<PageModel> findPagesWithWord(string search)
     {
-        List<string> hits = new List<string>();
-        foreach (string page in pages)
+        List<PageModel> hits = new List<PageModel>();
+        foreach (PageModel page in pages)
         {
-            string[] words = page.Split(' ');
+            string[] words = page.Content.Split(' ');
             foreach (string word in words)
             {
                 if (word.ToLower() == search.ToLower())
