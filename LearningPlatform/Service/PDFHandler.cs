@@ -1,14 +1,14 @@
-﻿using System;
-using org.apache.pdfbox.pdmodel;
+﻿using org.apache.pdfbox.pdmodel;
 using org.apache.pdfbox.util;
+using System.Collections.Generic;
 
 public class PDFHandler
 {
 
-    PDDocument doc;
-    PDFTextStripper stripper;
-    string path;
-    int start, end;
+    private PDDocument doc;
+    private PDFTextStripper stripper;
+    private List<string> pages;
+    private string path;
 
     public PDFHandler()
     {
@@ -21,25 +21,47 @@ public class PDFHandler
     public void setDocument(string path)
     {
         doc = PDDocument.load("path");
-        stripper.setStartPage(0);
-        stripper.setEndPage(doc.getNumberOfPages()-1);
+        Extract();
     }
 
-    public string[] getText()
+    private void Extract()
     {
-        string[] pages = new string[end - start];
-        int page = 0;
+        pages = new List<string>();
 
-        for (int i = start; i <= end; i++) {
+        for (int i = 0; i < doc.getNumberOfPages(); i++) {
             stripper.setStartPage(i);
             stripper.setEndPage(i + 1);
-            pages[page++] = stripper.getText(doc);
+            pages.Add(stripper.getText(doc));
         }
+    }
+
+    public List<string> getPages()
+    {
         return pages;
     }
 
-    public void setStartPage(int pageValue) { start = pageValue; }
+    public List<string> getPagesBetween(int start, int forward)
+    {
+        return pages.GetRange(start-1, forward);
+    }
 
-    public void setEndPage(int pageValue) { end = pageValue; }
+    public List<string> findPagesWithWord(string search)
+    {
+        List<string> hits = new List<string>();
+        foreach (string page in pages)
+        {
+            string[] words = page.Split(' ');
+            foreach (string word in words)
+            {
+                if (word.ToLower() == search.ToLower())
+                {
+                    hits.Add(page);
+                    break;
+                }
+            }
+        }
+        return hits;
+    }
+
 
 }
