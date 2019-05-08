@@ -38,7 +38,7 @@ namespace LearningPlatform.Controllers
 
                 PDFHandler pdfHandler = new PDFHandler();
                 pdfHandler.setDocument(filePath);
-                List<PageModel> pages = pdfHandler.getPagesBetween(model.StartPage, model.EndPage);
+                List<PageModel> pages = pdfHandler.getPages(model.StartPage, model.EndPage);
                 model.Pages = pages;
             }
 

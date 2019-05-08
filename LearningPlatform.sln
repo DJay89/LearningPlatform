@@ -3,14 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningPlatform", "LearningPlatform\LearningPlatform.csproj", "{DB1FC738-506F-4E43-B0BB-66A061252F5D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{58A31368-B407-424E-AB6A-A88068477DE5}"
-	ProjectSection(SolutionItems) = preProject
-		LearningPlatform\IKVM.OpenJDK.Core.dll = LearningPlatform\IKVM.OpenJDK.Core.dll
-		LearningPlatform\IKVM.OpenJDK.SwingAWT.dll = LearningPlatform\IKVM.OpenJDK.SwingAWT.dll
-		LearningPlatform\pdfbox-1.8.9.dll = LearningPlatform\pdfbox-1.8.9.dll
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LearningPlatform", "LearningPlatform\LearningPlatform.csproj", "{1C0B0AD4-7648-4C89-BFFD-96C008675C65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DB1FC738-506F-4E43-B0BB-66A061252F5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DB1FC738-506F-4E43-B0BB-66A061252F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DB1FC738-506F-4E43-B0BB-66A061252F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DB1FC738-506F-4E43-B0BB-66A061252F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C0B0AD4-7648-4C89-BFFD-96C008675C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C0B0AD4-7648-4C89-BFFD-96C008675C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C0B0AD4-7648-4C89-BFFD-96C008675C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C0B0AD4-7648-4C89-BFFD-96C008675C65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
