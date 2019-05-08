@@ -25,7 +25,11 @@ namespace LearningPlatform.Controllers.Api
         [HttpGet]
         public IEnumerable<User> GetUser()
         {
-            return _context.User;
+            var data = _context.User
+                .Include("Data")
+                .ToList();
+
+            return data;
         }
 
         // GET: api/Research/5

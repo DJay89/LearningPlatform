@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace LearningPlatform.Models
 {
@@ -13,11 +9,10 @@ namespace LearningPlatform.Models
 
     public class User
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public int Age { get; set; }
+        public int? Age { get; set; }
         public Gender? Gender { get; set; }
 
-        public ICollection<AppData> AppData { get; set; }
+        public ICollection<Data> Data { get; set; }
     }
 }

@@ -10,12 +10,14 @@ namespace LearningPlatform.Data
         }
 
         public DbSet<User> User { get; set; }
-        public DbSet<AppData> AppData { get; set; }
+        public DbSet<Models.Data> Data { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<AppData>().ToTable("AppData");
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Data)
+                .WithOne(ad => ad.User)
+                .IsRequired();
         }
     }
 }

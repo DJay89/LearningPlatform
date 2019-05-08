@@ -27,16 +27,16 @@ namespace LearningPlatform.Data
             }
             context.SaveChanges();
 
-            var data = new AppData[]
+            var data = new Models.Data[]
             {
-                new AppData{UserId=1, IsTextUnderstood=false, WPM=350, WordCount=750, Mode="Test" },
-                new AppData{UserId=1, IsTextUnderstood=true, WPM=200, WordCount=300, Mode="Test" },
-                new AppData{UserId=2, IsTextUnderstood=true, WPM=250, WordCount=125, Mode="Test" },
+                new Models.Data{UserId=1, IsTextUnderstood=false, WPM=350, WordCount=750, Mode="Test" },
+                new Models.Data{UserId=1, IsTextUnderstood=true, WPM=200, WordCount=300, Mode="Test" },
+                new Models.Data{UserId=2, IsTextUnderstood=true, WPM=250, WordCount=125, Mode="Test" },
             };
 
-            foreach (AppData appData in data)
+            foreach (Models.Data appData in data)
             {
-                context.AppData.Add(appData);
+                context.Data.Add(appData);
             }
             context.SaveChanges();
         }
