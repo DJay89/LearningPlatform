@@ -16,11 +16,26 @@
         @Html.DisplayFor(modelItem => item.Content)
     }
 }
-<form asp-action="Index" enctype="multipart/form-data">
+<form asp-controller="App" asp-action="Index" enctype="multipart/form-data" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <input asp-for="File" />
-    <input asp-for="StartPage" />
-    <input asp-for="EndPage" />
+    <div class="form-group">
+        <label for="FileUpload" class="control-label">Upload file</label>
+        <input type="file" asp-for="File" class="form-control">
+        <span asp-validation-for="File" class="text-danger"></span>
+    </div>
 
-    <input type="submit" />
+    <div class="form-group">
+        <label for="StartPage" class="control-label">Start page</label>
+        <input asp-for="StartPage" class="form-control">
+        <span asp-validation-for="StartPage" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="EndPage" class="control-label">End Page</label>
+        <input asp-for="EndPage" class="form-control">
+        <span asp-validation-for="EndPage" class="text-danger"></span>
+    </div>
+
+    <input type="submit" value="Upload"/>
 </form>
