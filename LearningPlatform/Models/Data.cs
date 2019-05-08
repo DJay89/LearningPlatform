@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace LearningPlatform.Models
 {
-    public class AppData
+    public class Data
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [IgnoreDataMember]
         public int Id { get; set; }
+
+        [IgnoreDataMember]
         public int UserId { get; set; }
         public bool IsTextUnderstood { get; set; }
         public int WPM { get; set; }
