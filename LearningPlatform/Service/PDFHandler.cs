@@ -1,51 +1,40 @@
 ﻿using LearningPlatform.Models;
-using org.apache.pdfbox.pdmodel;
-using org.apache.pdfbox.util;
 using System.Collections.Generic;
+
+using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.parser;
+using System;
 
 public class PDFHandler
 {
 
-    private PDDocument doc;
-    private PDFTextStripper stripper;
+    private PdfReader reader;
     private List<PageModel> pages;
-
-    public PDFHandler()
-    {
-        this.doc = new PDDocument();
-        this.stripper = new PDFTextStripper();
-    }
-
-    public PDDocument getDocument() { return doc; }
 
     public void setDocument(string path)
     {
-        doc = PDDocument.load("path");
-        Extract();
+        try {
+            reader = new PdfReader(path);
+            Extract();
+        } catch (Exception e) { Console.WriteLine(e.Message); }
     }
 
     private void Extract()
     {
         pages = new List<PageModel>();
 
-        for (int i = 0; i < doc.getNumberOfPages(); i++) {
-            stripper.setStartPage(i);
-            stripper.setEndPage(i + 1);
-
+        for (int i = 1; i <= reader.NumberOfPages; i++) {
             PageModel model  = new PageModel();
-            model.Content = stripper.getText(doc);
+            model.Content = PdfTextExtractor.GetTextFromPage(reader, i);
             pages.Add(model);
         }
     }
 
-    public List<PageModel> getPages()
+    public List<PageModel> getPages(int start, int end)
     {
-        return pages;
-    }
-
-    public List<PageModel> getPagesBetween(int start, int forward)
-    {
-        return pages.GetRange(start-1, forward);
+        if (start == end)
+            return pages;
+        return pages.GetRange(start - 1, end);
     }
 
     public List<PageModel> findPagesWithWord(string search)
