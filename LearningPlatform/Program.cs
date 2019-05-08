@@ -1,5 +1,5 @@
 ﻿using System;
-using LearningPlatform.Data.TestData;
+using LearningPlatform.Data;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,9 +17,9 @@ namespace LearningPlatform
             {
                 var services = scope.ServiceProvider;
                 try
-                {
-                    var context = services.GetRequiredService<SchoolContext>();
-                    DbInitializer.Initialize(context);
+                {                   
+                    var researchContext = services.GetRequiredService<ResearchContext>();
+                    DbInitializer.Initialize(researchContext);
                 }
                 catch (Exception ex)
                 {
