@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System;
+using System.IO;
 
 public class PDFHandler
 {
@@ -13,16 +14,32 @@ public class PDFHandler
 
     public void setDocument(string path)
     {
-        try {
-            reader = new PdfReader(path);
-            Extract();
-        } catch (Exception e) { Console.WriteLine(e.Message); }
-    }
-
-    private void Extract()
-    {
         pages = new List<PageModel>();
 
+        if (System.IO.Path.GetExtension(path) == ".txt")
+            extractTXT(path);
+
+        if (System.IO.Path.GetExtension(path) == ".pdf")
+        {
+            try
+            {
+                reader = new PdfReader(path);
+                extractPDF();
+            }
+            catch (Exception e) { Console.WriteLine(e.Message); }
+        }
+    }
+
+    private void extractTXT(string path)
+    {
+        PageModel model = new PageModel();
+        try { model.Content = File.ReadAllText(path); }
+        catch (Exception e) { System.Console.WriteLine(e.Message); }
+        pages.Add(model);
+    }
+
+    private void extractPDF()
+    {
         for (int i = 1; i <= reader.NumberOfPages; i++) {
             PageModel model  = new PageModel();
             model.Content = PdfTextExtractor.GetTextFromPage(reader, i);
@@ -39,20 +56,25 @@ public class PDFHandler
 
     public List<PageModel> findPagesWithWord(string search)
     {
-        List<PageModel> hits = new List<PageModel>();
-        foreach (PageModel page in pages)
+        if (pages.Count > 1)
         {
-            string[] words = page.Content.Split(' ');
-            foreach (string word in words)
+            List<PageModel> hits = new List<PageModel>();
+            foreach (PageModel page in pages)
             {
-                if (word.ToLower() == search.ToLower())
+                string[] words = page.Content.Split(' ');
+                foreach (string word in words)
                 {
-                    hits.Add(page);
-                    break;
+                    if (word.ToLower() == search.ToLower())
+                    {
+                        hits.Add(page);
+                        break;
+                    }
                 }
             }
+            return hits;
         }
-        return hits;
+        return null;
+        
     }
 
 
