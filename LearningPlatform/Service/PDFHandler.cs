@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System;
-using System.IO;
 
 public class PDFHandler
 {
@@ -16,26 +15,12 @@ public class PDFHandler
     {
         pages = new List<PageModel>();
 
-        if (System.IO.Path.GetExtension(path) == ".txt")
-            extractTXT(path);
-
-        if (System.IO.Path.GetExtension(path) == ".pdf")
-        {
             try
             {
                 reader = new PdfReader(path);
                 extractPDF();
             }
-            catch (Exception e) { Console.WriteLine(e.Message); }
-        }
-    }
-
-    private void extractTXT(string path)
-    {
-        PageModel model = new PageModel();
-        try { model.Content = File.ReadAllText(path); }
-        catch (Exception e) { System.Console.WriteLine(e.Message); }
-        pages.Add(model);
+            catch (Exception) { }
     }
 
     private void extractPDF()
@@ -51,7 +36,9 @@ public class PDFHandler
     {
         if (start == end)
             return pages;
-        return pages.GetRange(start - 1, end);
+        try { return pages.GetRange(start - 1, end - start); }
+        catch (Exception) { return null; }
+        
     }
 
     public List<PageModel> findPagesWithWord(string search)
