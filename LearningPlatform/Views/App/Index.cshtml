@@ -9,6 +9,7 @@
 }
 @if (Model.Pages != null && Model.Pages.Any())
 {
+    content = "";
     @foreach (PageModel page in Model.Pages)
     {
         content = string.Concat(content, page.Content);
