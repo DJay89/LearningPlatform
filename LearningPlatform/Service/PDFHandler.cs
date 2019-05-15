@@ -24,7 +24,7 @@ public class PDFHandler
         pages = new List<PageModel>();
 
         for (int i = 1; i <= reader.NumberOfPages; i++) {
-            PageModel model  = new PageModel();
+            PageModel model = new PageModel();
             model.Content = PdfTextExtractor.GetTextFromPage(reader, i);
             pages.Add(model);
         }
