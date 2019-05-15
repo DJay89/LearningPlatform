@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System;
+using Microsoft.AspNetCore.Http;
 
 public class PDFHandler
 {
@@ -11,12 +12,13 @@ public class PDFHandler
     private PdfReader reader;
     private List<PageModel> pages;
 
-    public void setDocument(string path)
+    public void SetDocument(IFormFile file)
     {
-        try {
-            reader = new PdfReader(path);
+        try
+        {
+            reader = new PdfReader(file.OpenReadStream());
             Extract();
-        } catch (Exception e) { Console.WriteLine(e.Message); }
+        }catch (Exception e) { Console.WriteLine(e.Message); }
     }
 
     private void Extract()
