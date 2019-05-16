@@ -1,0 +1,223 @@
+﻿#test-width {
+    opacity: 0;
+    position: absolute;
+    top: -666;
+    left: -666;
+}
+
+#test-width, #container {
+    font-size: 8.0em;
+    font-weight: 500;
+}
+
+#container {
+    color: #333;
+    height: 200px;
+    width: 100%;
+    border-top: 30px solid #333;
+    border-bottom: 30px solid #333;
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+    #container::before {
+        position: absolute;
+        top: -15px;
+        left: 285px;
+        background-color: #333;
+        height: 30px;
+        width: 30px;
+        content: " ";
+        transform: rotate(45deg);
+    }
+
+    #container::after {
+        position: absolute;
+        bottom: -15px;
+        left: 285px;
+        background-color: #333;
+        height: 30px;
+        width: 30px;
+        content: " ";
+        transform: rotate(45deg);
+    }
+
+#center-character {
+    color: #ED1F24;
+}
+
+#left-string {
+    color: #666;
+}
+
+#right-string {
+    color: #666;
+}
+
+#input-text {
+    width: 500px;
+    height: 150px;
+    margin-top: 150px;
+    font-size: 2.0em;
+    display: block;
+    margin: auto;
+    box-sizing: border-box;
+    background-color: #fff;
+    color: black;
+    border: 1px solid black;
+}
+
+.controls {
+    margin-left: 280px;
+    margin-bottom: 10px;
+}
+
+#playpause {
+    display: inline-block;
+    font-size: 2.5em;
+    color: #f0f0f0;
+    text-align: center;
+    cursor: pointer;
+}
+
+.current-wpm {
+    display: inline-block;
+    position: relative;
+    top: -12px;
+    left: 20px;
+}
+
+.below {
+    position: relative;
+    bottom: -10px;
+    left: -20px;
+    font-size: 0.6em;
+}
+
+#wpm {
+    font-size: 2.5em;
+    font-weight: 900;
+}
+
+.slider {
+    display: inline-block;
+    position: relative;
+    left: 20px;
+    top: -10px;
+}
+
+#wpm-slider {
+    -webkit-appearance: none;
+    width: 100%;
+}
+
+    #wpm-slider:focus {
+        outline: none;
+    }
+
+    #wpm-slider::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 3px;
+        cursor: pointer;
+        background: #222;
+    }
+
+    #wpm-slider::-webkit-slider-thumb {
+        height: 10px;
+        width: 10px;
+        border-radius: 10px;
+        background: #f0f0f0;
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -4px;
+    }
+
+    #wpm-slider:focus::-webkit-slider-runnable-track {
+        background: #ED1F24;
+    }
+
+    #wpm-slider::-moz-range-track {
+        width: 100%;
+        height: 8.4px;
+        cursor: pointer;
+        animate: 0.2s;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        background: #3071a9;
+        border-radius: 1.3px;
+        border: 0.2px solid #010101;
+    }
+
+    #wpm-slider::-moz-range-thumb {
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        border: 1px solid #000000;
+        height: 36px;
+        width: 16px;
+        border-radius: 3px;
+        background: #ffffff;
+        cursor: pointer;
+    }
+
+    #wpm-slider::-ms-track {
+        width: 100%;
+        height: 8.4px;
+        cursor: pointer;
+        animate: 0.2s;
+        background: transparent;
+        border-color: transparent;
+        border-width: 16px 0;
+        color: transparent;
+    }
+
+    #wpm-slider::-ms-fill-lower {
+        background: #2a6495;
+        border: 0.2px solid #010101;
+        border-radius: 2.6px;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    }
+
+    #wpm-slider::-ms-fill-upper {
+        background: #3071a9;
+        border: 0.2px solid #010101;
+        border-radius: 2.6px;
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    }
+
+    #wpm-slider::-ms-thumb {
+        box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+        border: 1px solid #000000;
+        height: 36px;
+        width: 16px;
+        border-radius: 3px;
+        background: #ffffff;
+        cursor: pointer;
+    }
+
+    #wpm-slider:focus::-ms-fill-lower {
+        background: #3071a9;
+    }
+
+    #wpm-slider:focus::-ms-fill-upper {
+        background: #367ebd;
+    }
+
+.button {
+    border: 0;
+    background: transparent;
+    box-sizing: border-box;
+    width: 0;
+    height: 52px;
+    border-color: transparent transparent transparent #202020;
+    transition: 100ms all ease;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 25px 0 25px 30px;
+    outline: none;
+}
+.button.paused {
+    border-style: double;
+    border-width: 0px 0 0px 30px;
+}
+.button:hover {
+    border-color: transparent transparent transparent #404040;
+}
+

@@ -18,13 +18,15 @@ public class PDFHandler
         {
             reader = new PdfReader(file.OpenReadStream());
             Extract();
-        } catch (Exception e) { Console.WriteLine(e.Message); }
+        }catch (Exception e) { Console.WriteLine(e.Message); }
     }
 
     private void Extract()
     {
+        pages = new List<PageModel>();
+
         for (int i = 1; i <= reader.NumberOfPages; i++) {
-            PageModel model  = new PageModel();
+            PageModel model = new PageModel();
             model.Content = PdfTextExtractor.GetTextFromPage(reader, i);
             pages.Add(model);
         }
@@ -34,32 +36,26 @@ public class PDFHandler
     {
         if (start == end)
             return pages;
-        try { return pages.GetRange(start - 1, end - start); }
-        catch (Exception) { return null; }
-        
+        return pages;
+        return pages.GetRange(start - 1, end);
     }
 
     public List<PageModel> findPagesWithWord(string search)
     {
-        if (pages.Count > 1)
+        List<PageModel> hits = new List<PageModel>();
+        foreach (PageModel page in pages)
         {
-            List<PageModel> hits = new List<PageModel>();
-            foreach (PageModel page in pages)
+            string[] words = page.Content.Split(' ');
+            foreach (string word in words)
             {
-                string[] words = page.Content.Split(' ');
-                foreach (string word in words)
+                if (word.ToLower() == search.ToLower())
                 {
-                    if (word.ToLower() == search.ToLower())
-                    {
-                        hits.Add(page);
-                        break;
-                    }
+                    hits.Add(page);
+                    break;
                 }
             }
-            return hits;
         }
-        return null;
-        
+        return hits;
     }
 
 
