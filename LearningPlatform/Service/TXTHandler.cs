@@ -16,7 +16,7 @@ namespace LearningPlatform.Service
             text = new List<PageModel>();
             PageModel model = new PageModel();
 
-            using (var reader = new StreamReader(file.OpenReadStream()))
+            using (StreamReader reader = new StreamReader(file.OpenReadStream()))
             {
                 model.Content = reader.ReadToEnd();
             }
