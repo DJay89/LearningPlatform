@@ -41,7 +41,7 @@ namespace LearningPlatform.Controllers
                 {
                     case "application/pdf":
                         PDFHandler pdfHandler = new PDFHandler();
-                        pdfHandler.setDocument(filePath);
+                        pdfHandler.SetDocument(model.File);
                         List<PageModel> pages = pdfHandler.getPages(model.StartPage, model.EndPage);
                         model.Pages = pages;
                         break;
