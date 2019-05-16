@@ -18,8 +18,7 @@ public class PDFHandler
         {
             reader = new PdfReader(file.OpenReadStream());
             Extract();
-        }
-        catch (Exception e) { Console.WriteLine(e.Message); }
+        } catch (Exception e) { Console.WriteLine(e.Message); }
     }
 
     private void Extract()
