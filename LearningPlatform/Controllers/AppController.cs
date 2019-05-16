@@ -48,7 +48,7 @@ namespace LearningPlatform.Controllers
 
                     case "txt/plain":
                         TXTHandler txtHandler = new TXTHandler();
-                        List<PageModel> text = txtHandler.getText(filePath);
+                        List<PageModel> text = txtHandler.getText(model.File);
                         model.Pages = text;
                         break;
                 }   
