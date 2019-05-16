@@ -36,7 +36,6 @@ public class PDFHandler
     {
         if (start == end)
             return pages;
-        return pages;
         return pages.GetRange(start - 1, end);
     }
 
